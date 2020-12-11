@@ -11,8 +11,8 @@ jobs:
       matrix:
         build_configuration: [Release]
         build_platform: [Any CPU]
-        build_boost_version: [1_72_0]
-        build_boost_version_dot: [1.72.0]
+        build_boost_version: [1_73_0]
+        build_boost_version_dot: [1.73.0]
         build_msvc_version_dot: [14.2, 14.1]
     steps:
     - name: Checkout repo
