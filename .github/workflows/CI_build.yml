@@ -7,13 +7,12 @@ jobs:
 
     runs-on: windows-latest
     strategy:
-      max-parallel: 6
       matrix:
         build_configuration: [Release]
         build_platform: [Any CPU]
-        build_boost_version: [1_73_0]
-        build_boost_version_dot: [1.73.0]
-        build_msvc_version_dot: [14.2, 14.1]
+        build_boost_version: [1_75_0]
+        build_boost_version_dot: [1.75.0]
+        build_msvc_version_dot: [14.2]
     steps:
     - name: Checkout repo
       uses: actions/checkout@v2
@@ -42,10 +41,10 @@ jobs:
           Set-Location -Path 'D:\a'
           New-Item -ItemType directory -Path D:\a\boost
           Set-Location -Path 'D:\a\boost'
-          (New-Object System.Net.WebClient).DownloadFile("https://dl.bintray.com/boostorg/release/${{ matrix.build_boost_version_dot }}/binaries/boost_${{ matrix.build_boost_version }}-msvc-${{ matrix.build_msvc_version_dot }}-64.exe", "D:\a\boost\boost_${{ matrix.build_boost_version }}-msvc-${{ matrix.build_msvc_version_dot }}-64.exe")
-          (New-Object System.Net.WebClient).DownloadFile("https://dl.bintray.com/boostorg/release/${{ matrix.build_boost_version_dot }}/binaries/boost_${{ matrix.build_boost_version }}-msvc-${{ matrix.build_msvc_version_dot }}-32.exe", "D:\a\boost\boost_${{ matrix.build_boost_version }}-msvc-${{ matrix.build_msvc_version_dot }}-32.exe")
-          .\boost_${{ matrix.build_boost_version }}-msvc-${{ matrix.build_msvc_version_dot }}-64.exe /SILENT /DIR=D:\a\boost\boost | Out-Null
-          .\boost_${{ matrix.build_boost_version }}-msvc-${{ matrix.build_msvc_version_dot }}-32.exe /SILENT /DIR=D:\a\boost\boost | Out-Null
+          (New-Object System.Net.WebClient).DownloadFile("https://dl.bintray.com/boostorg/release/${{ matrix.build_boost_version_dot }}/binaries/boost_${{ matrix.build_boost_version }}-bin-msvc-all-32-64.7z", "C:\Temp\boost_${{ matrix.build_boost_version }}-bin-msvc-all-32-64.7z")
+          7z x -y C:\Temp\boost_${{ matrix.build_boost_version }}-bin-msvc-all-32-64.7z | Out-Null
+          Rename-Item -Path ".\boost_${{ matrix.build_boost_version }}-bin-msvc-all-32-64.7z" -NewName "boost"
+
 
     - name: run builder
       working-directory: builder\builder\bin\Release\
