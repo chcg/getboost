@@ -10,8 +10,8 @@ jobs:
       matrix:
         build_configuration: [Release]
         build_platform: [Any CPU]
-        build_boost_version: [1_75_0]
-        build_boost_version_dot: [1.75.0]
+        build_boost_version: [1_76_0]
+        build_boost_version_dot: [1.76.0]
         build_msvc_version_dot: [14.2]
     steps:
     - name: Checkout repo
@@ -41,7 +41,7 @@ jobs:
           Set-Location -Path 'D:\a'
           New-Item -ItemType directory -Path D:\a\boost
           Set-Location -Path 'D:\a\boost'
-          (New-Object System.Net.WebClient).DownloadFile("https://dl.bintray.com/boostorg/release/${{ matrix.build_boost_version_dot }}/binaries/boost_${{ matrix.build_boost_version }}-bin-msvc-all-32-64.7z", "C:\Temp\boost_${{ matrix.build_boost_version }}-bin-msvc-all-32-64.7z")
+          (New-Object System.Net.WebClient).DownloadFile("https://boostorg.jfrog.io/artifactory/main/release/${{ matrix.build_boost_version_dot }}/binaries/boost_${{ matrix.build_boost_version }}-bin-msvc-all-32-64.7z", "C:\Temp\boost_${{ matrix.build_boost_version }}-bin-msvc-all-32-64.7z")
           7z x -y C:\Temp\boost_${{ matrix.build_boost_version }}-bin-msvc-all-32-64.7z | Out-Null
           Rename-Item -Path ".\boost_${{ matrix.build_boost_version }}-bin-msvc-all-32-64.7z" -NewName "boost"
 
