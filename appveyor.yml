@@ -6,8 +6,8 @@ environment:
 
   - PlatformToolset: v143
     APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2022
-    BUILD_BOOST_VERSION: 1_88_0
-    BUILD_BOOST_VERSION_DOT: 1.88.0
+    BUILD_BOOST_VERSION: 1_89_0
+    BUILD_BOOST_VERSION_DOT: 1.89.0
     BUILD_MSVC_VERSION_DOT: 14.3
 
 configuration:
